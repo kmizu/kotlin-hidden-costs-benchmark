@@ -28,8 +28,18 @@ public class KotlinBenchmarkPart2 {
     }
 
     @GenerateMicroBenchmark
+    public int scalaLocalFunctionCapturingLocalVariable( TestState state ) {
+        return ScalaSources.runLocalFunctionCapturingLocalVariable(state.a);
+    }
+
+    @GenerateMicroBenchmark
     public int kotlinLocalFunctionWithoutCapturingLocalVariable( TestState state ) {
         return Kotlin_sourcesKt.runLocalFunctionWithoutCapturingLocalVariable( state.a );
+    }
+
+    @GenerateMicroBenchmark
+    public int scalaLocalFunctionWithoutCapturingLocalVariable( TestState state ) {
+        return ScalaSources.runLocalFunctionWithoutCapturingLocalVariable( state.a );
     }
 
     @GenerateMicroBenchmark
@@ -43,6 +53,11 @@ public class KotlinBenchmarkPart2 {
     }
 
     @GenerateMicroBenchmark
+    public void scalaSayHello( TestState state, BlackHole blackHole ) {
+        ScalaSources.sayHello( state.who, blackHole );
+    }
+
+    @GenerateMicroBenchmark
     public void javaIntVarargs( BlackHole blackHole, TestState state ) {
         JavaExamples.runPrintDouble( blackHole, state.intArray );
     }
@@ -50,5 +65,10 @@ public class KotlinBenchmarkPart2 {
     @GenerateMicroBenchmark
     public void kotlinIntVarargs( BlackHole blackHole, TestState state ) {
         Kotlin_sourcesKt.runPrintDouble( blackHole, state.intArray );
+    }
+
+    @GenerateMicroBenchmark
+    public void scalaIntVarargs( BlackHole blackHole, TestState state ) {
+        ScalaSources.runPrintDouble( blackHole, state.intArray );
     }
 }

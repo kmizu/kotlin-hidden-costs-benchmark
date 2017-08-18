@@ -23,6 +23,11 @@ public class KotlinBenchmarkPart1 {
     }
 
     @GenerateMicroBenchmark
+    public int scalaLambda() {
+        return ScalaSources.runScalaLambda(db);
+    }
+
+    @GenerateMicroBenchmark
     public int kotlinLambda() {
         return Kotlin_sourcesKt.runKotlinLambda( db );
     }
@@ -33,13 +38,22 @@ public class KotlinBenchmarkPart1 {
     }
 
     @GenerateMicroBenchmark
+    public int scalaInlinedFunction() {
+        return ScalaSources.runScalaInlinedFunction( db );
+    }
+
+    @GenerateMicroBenchmark
     public String kotlinPrivateConstructorCallFromCompanionObject() {
         return Kotlin_sourcesKt.runCompanionObjectCallToPrivateConstructor();
+    }
+
+    @GenerateMicroBenchmark
+    public String scalaPrivateConstructorCallFromCompanionObject() {
+        return ScalaSources.runCompanionObjectCallToPrivateConstructor();
     }
 
     @GenerateMicroBenchmark
     public String javaPrivateConstructorCallFromStaticMethod() {
         return JavaExamples.runPrivateConstructorFromStaticMethod();
     }
-
 }
